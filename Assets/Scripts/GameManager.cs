@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject gridLine;
+    public List<GameObject> ships;
     private GameObject grid;
 
     public int gridSize;
@@ -25,15 +26,16 @@ public class GameManager : MonoBehaviour
     }
 
     void GenerateGridLines() {
-        for(int i = 0; i < 2; i++) {
-            for(int j = 0; j <= gridSize * 10; j++) {
-                if (i == 0) { // x direction first
-                    Instantiate(gridLine, new Vector3(0f, .01f, gridSize * j), Quaternion.identity, grid.transform);
-                }
-                else if(i == 1) { // z direction (rotated 90)
-                    Instantiate(gridLine, new Vector3(0f, .01f, gridSize * j), Quaternion.AngleAxis(90, Vector3.up), grid.transform);
-                }
-            }
+        for(int j = -5; j <= 5; j++) {
+            // x direciton first
+                Instantiate(gridLine, new Vector3(gridSize * j, .01f, 0f), Quaternion.identity, grid.transform);
+                
+            // z direction (rotated 90)
+                Instantiate(gridLine, new Vector3(0f, .01f, gridSize * j), Quaternion.AngleAxis(90, Vector3.up), grid.transform);
         }
+    }
+
+    void UnselectShips() {
+
     }
 }

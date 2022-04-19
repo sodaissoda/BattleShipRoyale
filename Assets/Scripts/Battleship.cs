@@ -37,9 +37,6 @@ public class Battleship : MonoBehaviour
             if (canMove && verticalInput > 0) {
                 transform.Translate(direction * gridSize);
             }
-            else if(canMove && verticalInput < 0) {
-                transform.Translate(direction * -gridSize);
-            }
             
             if(horizontalInput > 0) {
                 transform.Rotate(0, 90, 0, Space.Self);
