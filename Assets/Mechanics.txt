@@ -1,0 +1,10 @@
+Idea: Battleship battle royale
+
+Main concepts:
+- many people on 1 battleship board (~>10, depends on final size of board)
+- choose starting position on board
+- turn based combat
+- 'storm' 
+- shooting at spaces with other players
+- few ships per person, maybe 2 or 3 (variety of ships to choose from?)
+- 
