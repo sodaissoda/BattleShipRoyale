@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject gridLine;
-    public List<GameObject> ships;
+    public List<GameObject> players;
     private GameObject grid;
 
     public int gridSize;
