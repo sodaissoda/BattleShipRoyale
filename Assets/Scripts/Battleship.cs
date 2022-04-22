@@ -1,3 +1,9 @@
+
+
+/* This is the file for each individual ship on the board.
+ * It has scripts pertaining to movement and whether or not it is selected.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,13 +42,19 @@ public class Battleship : MonoBehaviour
         if (selected) {
             if (canMove && verticalInput > 0) {
                 transform.Translate(direction * gridSize);
+
+                Debug.Log(this.gameObject.name + " Moved");
             }
             
             if(horizontalInput > 0) {
                 transform.Rotate(0, 90, 0, Space.Self);
+
+                Debug.Log(this.gameObject.name + " Turned right");
             }
             else if(horizontalInput < 0) {
                 transform.Rotate(0 ,-90, 0, Space.Self);
+
+                Debug.Log(this.gameObject.name + " Turned left");
             }
         }
     }
@@ -51,6 +63,14 @@ public class Battleship : MonoBehaviour
     void OnMouseDown() {
         Debug.Log("Ship clicked");
         selected = true;
+    }
+
+    public bool GetSelected() {
+        return selected;
+    }
+
+    public void UnSelect() {
+        selected = false;
     }
     
 

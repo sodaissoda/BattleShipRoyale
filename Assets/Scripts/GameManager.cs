@@ -1,3 +1,7 @@
+
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,9 +37,5 @@ public class GameManager : MonoBehaviour
             // z direction (rotated 90)
                 Instantiate(gridLine, new Vector3(0f, .01f, gridSize * j), Quaternion.AngleAxis(90, Vector3.up), grid.transform);
         }
-    }
-
-    void UnselectShips() {
-
     }
 }
