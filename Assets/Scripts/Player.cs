@@ -6,12 +6,16 @@ public class Player : MonoBehaviour
 {
 
     public List<GameObject> ships;
+    private GameObject camera;
 
     private GameObject shipToIgnore;
+
+    private Vector3 dragOrigin;
 
     // Start is called before the first frame update
     void Start()
     {
+        camera = GameObject.Find("Main Camera");
         shipToIgnore = null;
 
         // adds player's ships to ships list
@@ -40,5 +44,31 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    void UnselectAll() {
+        for(int i = 0; i < ships.Count; i++) {
+            ships[i].GetComponent<Battleship>().UnSelect();
+        }
+    }
+
+    void OnMouseDrag(Collider other) {
+        Debug.Log("mouse dragged");
+        UnselectAll();
+
+        if (Input.GetMouseButtonDown(0)) {
+            dragOrigin = Input.mousePosition;
+        }
+
+        if (!Input.GetMouseButton(0)) return;
+
+        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+        Vector3 move = new Vector3(pos.x * speed, 0, pos.y * speed);
+
+        transform.Translate(move, Space.World);
+    }
+
+    public GameObject GetCurrentShip() {
+        return shipToIgnore;
     }
 }

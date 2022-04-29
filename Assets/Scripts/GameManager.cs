@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> players;
     private GameObject grid;
 
+    public int gridLength;
     public int gridSize;
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     }
 
     void GenerateGridLines() {
-        for(int j = -5; j <= 5; j++) {
+        for(int j = -gridLength; j <= gridLength; j++) {
             // x direciton first
                 Instantiate(gridLine, new Vector3(gridSize * j, .01f, 0f), Quaternion.identity, grid.transform);
                 

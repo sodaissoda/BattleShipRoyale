@@ -43,18 +43,18 @@ public class Battleship : MonoBehaviour
             if (canMove && verticalInput > 0) {
                 transform.Translate(direction * gridSize);
 
-                Debug.Log(this.gameObject.name + " Moved");
+                // Debug.Log(this.gameObject.name + " Moved");
             }
             
             if(horizontalInput > 0) {
                 transform.Rotate(0, 90, 0, Space.Self);
 
-                Debug.Log(this.gameObject.name + " Turned right");
+                // Debug.Log(this.gameObject.name + " Turned right");
             }
             else if(horizontalInput < 0) {
                 transform.Rotate(0 ,-90, 0, Space.Self);
 
-                Debug.Log(this.gameObject.name + " Turned left");
+                // Debug.Log(this.gameObject.name + " Turned left");
             }
         }
     }
