@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     private Vector3 dragOrigin;
 
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,26 +48,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    void UnselectAll() {
+    public void UnselectAll() {
         for(int i = 0; i < ships.Count; i++) {
             ships[i].GetComponent<Battleship>().UnSelect();
         }
-    }
-
-    void OnMouseDrag(Collider other) {
-        Debug.Log("mouse dragged");
-        UnselectAll();
-
-        if (Input.GetMouseButtonDown(0)) {
-            dragOrigin = Input.mousePosition;
-        }
-
-        if (!Input.GetMouseButton(0)) return;
-
-        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 move = new Vector3(pos.x * speed, 0, pos.y * speed);
-
-        transform.Translate(move, Space.World);
     }
 
     public GameObject GetCurrentShip() {
