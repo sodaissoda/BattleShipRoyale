@@ -10,17 +10,19 @@ public class CameraController : MonoBehaviour
     public float height;
     public float speed;
 
-    private Vector3 dragOrigin;
+    private Vector3 prevPos;
+    private Vector3 pos;
+    private Vector3 posDiff;
 
-    private bool once;
-
-    public float mod;
+    private bool first;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        once = false;
+        player = GameObject.Find("Player1");
+        first = true;
+        prevPos = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -41,23 +43,24 @@ public class CameraController : MonoBehaviour
     }
 
 
-    // not what i want
     void Drag() {
-        if (Input.GetMouseButtonDown(0) && !once) {
-            dragOrigin = Input.mousePosition;
-            once = true;
+        if (Input.GetMouseButtonDown(0)) {
+            player.GetComponent<Player>().UnselectAll();
+            pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - new Vector3(Screen.width/2, 0, Screen.height/2));
+        }
+        if (first) {
+            prevPos = pos;
+            first = false;
         }
 
         if (!Input.GetMouseButton(0)) {
-            once = false;
+            first = true;
             return;
         }
 
-        Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-        Vector3 move = new Vector3((pos.x) * speed, 0, (pos.y) * speed);
+        posDiff = prevPos - pos;
 
-        move -= new Vector3(move.x * mod, 0, move.y * mod) ;
-
-        transform.Translate(move, Space.World);
+        transform.Translate(posDiff, Space.World);
+        prevPos = pos;
     }
 }

@@ -647,8 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1707675028}
   height: 8
-  speed: 0.5
-  mod: 0.5
+  speed: 1
 --- !u!1001 &1032807616
 PrefabInstance:
   m_ObjectHideFlags: 0
