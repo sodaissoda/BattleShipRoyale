@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     private Vector3 prevPos;
     private Vector3 pos;
     private Vector3 posDiff;
+    private Vector3 mousePos;
+    public Vector3 centerScreen;
 
     private bool first;
 
@@ -44,23 +46,26 @@ public class CameraController : MonoBehaviour
 
 
     void Drag() {
-        if (Input.GetMouseButtonDown(0)) {
-            player.GetComponent<Player>().UnselectAll();
-            pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - new Vector3(Screen.width/2, 0, Screen.height/2));
+        if (!Input.GetMouseButton(0)) {
+            first = true;
+            return;
         }
+        player.GetComponent<Player>().UnselectAll();
+        mousePos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y - 1f).normalized;// - new Vector3(.5f, 0, .5f);
+        Debug.Log(mousePos);
+
+        pos = Vector3.Scale(mousePos, new Vector3(speed, 0, speed));
+        //Debug.Log(pos);
+        
         if (first) {
             prevPos = pos;
             first = false;
         }
 
-        if (!Input.GetMouseButton(0)) {
-            first = true;
-            return;
-        }
-
         posDiff = prevPos - pos;
+        //Debug.Log(posDiff);
 
-        transform.Translate(posDiff, Space.World);
+        //transform.Translate(posDiff, Space.World);
         prevPos = pos;
     }
 }
